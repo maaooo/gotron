@@ -2,7 +2,9 @@
   "name": "frontend",
   "version": "0.1.0",
   "scripts": {
-    "build": "webpack || webpack"
+    "build": "webpack || (npm run build:onfail && webpack && npm run build:onsuccess) ",
+    "build:onfail": "echo *.css.d.ts files have not been created in time. This is caused by https://github.com/webpack/watchpack/issues/25 Trying to rebuild...",
+    "build:onsuccess": "echo Typescript build was successful. Errors occured because of https://github.com/webpack/watchpack/issues/25 and thus can be ignored as another webpack build has been run as a workaround."
   },
   "devDependencies": {
     "awesome-typescript-loader": "^3.2.0",
